@@ -1,0 +1,34 @@
+{% include 'frontend/home.html' %}
+{% block content %}  
+   
+        <div class="container">
+
+          <!--Simple Form-->
+          <h2 class="my-4">Add a new file to analyze</h2>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="file" name="upload" accept=".doc, .docx, .pdf, .txt" class="form-control">
+                    <button class="input-group-text"  type="submit">Upload</button>
+                </div>
+          </form>
+
+          <!--See File Uploaded-->
+          <h2 class="my-4">File uploaded</h2>
+          <div class="row">
+            {% if file_url %}
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+              <p>Uploaded to:<a href="{{ file_url }}">{{ file_url }}</a></p>
+              <a class="btn btn-dark my-4" href="/">Return to Homepage</a>
+            {% else %}
+            <p>No file added.</p>
+            {% endif %}
+          </div>
+        </div>
+    
+
+{% endblock %}
+
+
+
+
